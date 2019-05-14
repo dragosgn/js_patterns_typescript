@@ -1,7 +1,7 @@
 // define a class
 class Observable {
   // instances of observer class start with an ampty array of observers that react to state changes
-  observers: Array<T>;
+  observers: Array<Function>;
   constructor() {
     this.observers = [];
   }
@@ -35,16 +35,25 @@ const p2 = document.querySelector(".js-p2");
 const p3 = document.querySelector(".js-p3");
 
 // actions to add to the observers array
-const updateP1 = text => (p1.textContent = text);
-const updateP2 = text => (p2.textContent = text);
-const updateP3 = text => (p3.textContent = text);
+const updateP1 = (text: string) => (p1.textContent = text);
+const updateP2 = (text: string) => (p2.textContent = text);
+const updateP3 = (text: string) => (p3.textContent = text);
 
 const headingsObserver = new Observable();
 
 headingsObserver.subscribe(updateP1);
 headingsObserver.subscribe(updateP2);
-headingsObserver.subscribe(udpateP3);
+headingsObserver.subscribe(updateP3);
 
-input.addEventListener("keyup", e => {
+type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T;
+  // probably you might want to add the currentTarget as well
+  // currentTarget: T;
+};
+
+// use it instead of Event
+let e: HTMLElementEvent<HTMLTextAreaElement>;
+
+input.addEventListener("keyup", (e: HTMLElementEvent<HTMLTextAreaElement>) => {
   headingsObserver.notify(e.target.value);
 });
