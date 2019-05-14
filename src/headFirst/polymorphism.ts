@@ -1,15 +1,13 @@
-function Person(age, weight) {
+function Person(age?: number, weight?: number) {
   this.age = age;
   this.weight = weight;
 }
 
 Person.prototype.getInfo = function() {
-  return (
-    "I am " + this.age + " years old " + "and weighs " + this.weight + " kilo."
-  );
+  return "I am " + this.age + " years old and weighs " + this.weight + " kilo.";
 };
 
-function Employee(age, weight, salary) {
+function Employee(age?: number, weight?: number, salary?: number) {
   this.age = age;
   this.weight = weight;
   this.salary = salary;
@@ -21,11 +19,9 @@ Employee.prototype.getInfo = function() {
   return (
     "I am " +
     this.age +
-    " years old " +
-    "and weighs " +
+    " years old and weighs " +
     this.weight +
-    " kilo " +
-    "and earns " +
+    " kilo and earns " +
     this.salary +
     " dollars."
   );
