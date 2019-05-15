@@ -188,4 +188,60 @@ var myModule = (function() {
   // Module object
   var module = {},
     privateVariable = "Hello world";
+
+  function privateMethod() {
+    // ...
+  }
+
+  module.publicProperty = "Foobar";
+  module.publicMethod = function() {
+    console.log(privateVariable);
+  };
+
+  return module;
+})();
+
+// toolkit and framework specific module pattern implementations
+
+// Dojo pattern
+// The Revealing Module Pattern
+
+// The Singleton Pattern
+
+var mySingleton = (function() {
+  var instance;
+
+  function init() {
+    // Sigleton
+    // Private methods and variables
+    function privateMethod() {
+      console.log("I am private");
+    }
+
+    var privateVariables = "I ma also private";
+
+    var privateRandomNumber = Math.random();
+
+    return {
+      // Public methods and variables
+      publicMethod: function() {
+        console.log("The public can see me!");
+      },
+      publicProperty: "I am also public",
+      getRandomNumber: function() {
+        return privateRandomNumber;
+      }
+    };
+  }
+  return {
+    // Get the Singleton istance if one exists
+    // or create on if it dosen't
+    getInstance: function() {
+      if (!instance) {
+        instance = init();
+      }
+
+      return instance;
+    }
+  };
 })();
