@@ -1,12 +1,16 @@
 // Each of the following will create a new empty object
 
-var newObject = {};
+interface newObject {
+  someKey?: string;
+}
+
+var newObject: newObject = {};
 
 // or
-var newObject = Object.create(Object.prototype);
+var newObject: newObject = Object.create(Object.prototype);
 
 // or
-var newObject = new Object();
+var newObject: newObject = new Object();
 
 // 4 ways to assign keys and values to an object
 
@@ -95,7 +99,7 @@ console.log(civic.toString());
 console.log(mondeo.toString());
 
 // ======= Constructors with prototypes =======
-function Car(model, year, miles) {
+function NewCar(model, year, miles) {
   this.model = model;
   this.year = year;
   this.miles = miles;
