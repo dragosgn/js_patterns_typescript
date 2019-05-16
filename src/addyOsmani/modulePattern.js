@@ -245,3 +245,32 @@ var mySingleton = (function() {
     }
   };
 })();
+
+var myBadSingleton = (function() {
+  // Instance stores a reference to the Singleton
+  var instance;
+
+  function init() {
+    // Singleton
+    var privateRandomNumber = Math.random();
+
+    return {
+      // Always create a new Singleton instance
+      getInstance: function() {
+        instance = init();
+        return instance;
+      }
+    };
+  }
+})();
+
+// Usage:
+
+var singleA = mySingleton.getInstance();
+var singleB = mySingleton.getInstance();
+
+console.log(singleA.getRandomNumber() === singleB.getRandomNumber()); // true
+
+var badSingleA = myBadSingleton.getInstance();
+var badSingleB = myBadSingleton.getInstance();
+console.log(badSingleA.getRandomNumber() !== badSingleB.getRandomNumber()); // true
