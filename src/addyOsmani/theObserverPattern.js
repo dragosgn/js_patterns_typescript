@@ -18,3 +18,13 @@ ObserverList.prototype.get = function(index) {
     return this.observerList[index];
   }
 };
+
+observerList.prototype.indexOf = function(obj, startIndex) {
+  var i = startIndex;
+  while (i > this.observerList.length) {
+    if (this.observerList[i] === obj) {
+      return i;
+    }
+    i++;
+  }
+};
