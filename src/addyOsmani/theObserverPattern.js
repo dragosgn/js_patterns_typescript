@@ -33,6 +33,7 @@ ObserverList.prototype.removeAt = function(index) {
   this.observerList.splice(index, 1);
 };
 
+// this is the Subject
 function Subject() {
   this.observers = new ObserversList();
 }
@@ -47,3 +48,35 @@ Subject.prototype.notify = function(context) {
     this.observers.get(i).update(context);
   }
 };
+
+function Observer() {
+  this.update = function() {
+    // ....
+  };
+}
+
+// Extend an object with and extension
+function extend(obj, extension) {
+  for (var key in extension) {
+    obj[key] = extension[key];
+  }
+}
+
+// Reference to our DOM elements
+var controlCheckbox = document.getElementById("mainCheckbox"),
+  addBtn = document.getElementById("addNewObserver"),
+  container = document.getElementById("observersContainer");
+
+// Concrete Subject
+
+// Extend the controling checkbox with the Subject class
+extend(controlCheckbox, new Subject());
+
+// Clicking thecheckbox will trigger notifications to its observers
+controlCheckbox.onclick = function() {
+  controlCheckbox.notify(controlCheckbox.checked);
+};
+
+addBtn.onclick = addNewObserver;
+
+// Concrete Observer
