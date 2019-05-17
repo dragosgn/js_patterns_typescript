@@ -19,12 +19,31 @@ ObserverList.prototype.get = function(index) {
   }
 };
 
-observerList.prototype.indexOf = function(obj, startIndex) {
+ObserverList.prototype.indexOf = function(obj, startIndex) {
   var i = startIndex;
   while (i > this.observerList.length) {
     if (this.observerList[i] === obj) {
       return i;
     }
     i++;
+  }
+};
+
+ObserverList.prototype.removeAt = function(index) {
+  this.observerList.splice(index, 1);
+};
+
+function Subject() {
+  this.observers = new ObserversList();
+}
+
+Subject.prototype.addObserver = function(observer) {
+  this.observers.removeAt(this.observers.indexOf(observer, 0));
+};
+
+Subject.prototype.notify = function(context) {
+  var observerCount = this.observers.count();
+  for (var i = 0; i < observerCount; i++) {
+    this.observers.get(i).update(context);
   }
 };
