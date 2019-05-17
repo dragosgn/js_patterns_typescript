@@ -80,3 +80,17 @@ controlCheckbox.onclick = function() {
 addBtn.onclick = addNewObserver;
 
 // Concrete Observer
+
+function addNewObserver() {
+  // Create a new checkbox to be added
+  var check = document.createElement("input");
+  check.type = "checkbox";
+
+  // Extend the checkbox with the Observer class
+  extend(check, new Observer());
+
+  // Overrride with custom update behaviour
+  check.update = function(value) {
+    this.checked = value;
+  };
+}
