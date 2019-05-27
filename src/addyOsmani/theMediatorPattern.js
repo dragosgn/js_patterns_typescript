@@ -10,6 +10,15 @@ var orgChart = {
     // getEmployeeDetail provides a view that users interact with
     var employeeDetail = this.getEmployeeDetail();
 
-    employeeDetail.on("complete", function(employee) {});
+    // when the employee detail is complete, the meadiator (the orgChart object)
+    // decides what happens next
+    employeeDetail.on("complete", function(employee) {
+      // set up additional objects that have additional events, which are used
+      // by the mediator to do additional things
+      var managerSelector = this.selectManager(employee);
+      managerSelector.on("save", function(employee) {
+        employee.save();
+      });
+    });
   }
 };
