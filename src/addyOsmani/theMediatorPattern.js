@@ -22,3 +22,7 @@ var orgChart = {
     });
   }
 };
+
+// A mediator is an object that handles the workflow between many other objects.
+// It handles the workflow between many other objects, aggreagting the responsibility of that workflow into a single object.
+// It reduces the comunication channels needed between objects or components in a system from many to many to many to one. Adding publishers and subscribers is relatively easy due to the level of decoupling.
